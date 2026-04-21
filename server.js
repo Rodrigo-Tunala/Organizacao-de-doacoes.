@@ -105,6 +105,19 @@ app.put("/donation_point/:id", async (req, res) => {
 
 });
 
+app.delete("/donation_point/:id", async (req, res) => {
+
+    const { id } = req.params;
+
+    const db = await creatDb();
+
+    await db.run(`DELETE FROM donation_point WHERE id = ? `, [id]);
+
+    res.send(`Ponto de doação deletado.`);
+
+
+});
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
